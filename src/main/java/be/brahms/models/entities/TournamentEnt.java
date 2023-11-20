@@ -1,5 +1,7 @@
 package be.brahms.models.entities;
 
+import be.brahms.enums.Category;
+import be.brahms.enums.Status;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
