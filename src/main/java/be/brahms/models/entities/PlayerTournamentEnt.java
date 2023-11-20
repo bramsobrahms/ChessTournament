@@ -1,5 +1,6 @@
 package be.brahms.models.entities;
 
+import be.brahms.enums.Result;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
