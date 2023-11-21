@@ -1,5 +1,6 @@
 package be.brahms.services.impl;
 
+import be.brahms.exceptions.player.NotFoundPlayerException;
 import be.brahms.models.entities.PlayerEnt;
 import be.brahms.repositories.PlayerRepo;
 import be.brahms.services.PlayerServ;
@@ -45,4 +46,11 @@ public class PlayerServImpl implements PlayerServ {
 
         return playerRepo.save(player);
     }
+
+    @Override
+    public PlayerEnt findById(Long id) {
+        return playerRepo.findById(id).orElseThrow(NotFoundPlayerException::new);
+    }
+
+
 }

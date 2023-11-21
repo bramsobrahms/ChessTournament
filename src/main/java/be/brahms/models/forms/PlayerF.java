@@ -4,25 +4,27 @@ import be.brahms.enums.Gender;
 import be.brahms.models.entities.PlayerEnt;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import org.antlr.v4.runtime.misc.NotNull;
+import org.hibernate.validator.constraints.UniqueElements;
 
 import java.time.LocalDate;
 
 @Data
 public class PlayerF {
 
-    @NotNull
+    @NotBlank
     private String email;
-    @Min(4)
+    @NotBlank
     private String pseudo;
-    @NotNull
+    @NotBlank
     private LocalDate birthdate;
     @Min(0) @Max(3000)
     private int elo;
-    @NotNull
+    @NotBlank
     private String role;
-    @NotNull
+    @NotBlank
     private Gender gender;
 
     public PlayerEnt toEntity(){

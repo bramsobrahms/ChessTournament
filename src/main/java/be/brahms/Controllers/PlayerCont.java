@@ -5,13 +5,10 @@ import be.brahms.models.forms.PlayerF;
 import be.brahms.services.PlayerServ;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/player")
+@RequestMapping
 public class PlayerCont {
 
     private final PlayerServ playerServ;
@@ -20,7 +17,7 @@ public class PlayerCont {
         this.playerServ = playerServ;
     }
 
-    @PostMapping
+    @PostMapping("/player")
     public ResponseEntity<PlayerEnt> create (@RequestBody @Valid PlayerF form) {
         PlayerEnt createPlayer = playerServ.create(form.toEntity());
         return ResponseEntity.ok(createPlayer);
