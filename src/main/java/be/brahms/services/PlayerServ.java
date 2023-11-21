@@ -10,4 +10,6 @@ public interface PlayerServ {
     PlayerEnt findById(Long id);
     List<PlayerEnt> findAll();
 
+    List<PlayerEnt> findAllAdmins();
+
 }

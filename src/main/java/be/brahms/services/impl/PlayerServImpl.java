@@ -59,4 +59,9 @@ public class PlayerServImpl implements PlayerServ {
         return playerRepo.findAll();
     }
 
+
+    public List<PlayerEnt> findAllAdmins() {
+        return playerRepo.findAllAdmins();
+    }
+
 }

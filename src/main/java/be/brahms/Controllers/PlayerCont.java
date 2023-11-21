@@ -5,6 +5,7 @@ import be.brahms.models.entities.PlayerEnt;
 import be.brahms.models.forms.PlayerF;
 import be.brahms.services.PlayerServ;
 import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,6 +15,7 @@ import java.util.List;
 @RequestMapping
 public class PlayerCont {
 
+    @Autowired
     private final PlayerServ playerServ;
 
     public PlayerCont(PlayerServ playerServ) {
@@ -34,9 +36,15 @@ public class PlayerCont {
     }
 
     @GetMapping("/players")
-    public ResponseEntity<List<PlayerEnt>> findAllPlayers () {
+    public ResponseEntity<List<PlayerEnt>> findAllPlayers() {
         List<PlayerEnt> listPlayers = playerServ.findAll();
         return ResponseEntity.ok(listPlayers);
+    }
+
+    @GetMapping("/listAdmin")
+    public ResponseEntity<List<PlayerEnt>> findAllAdmins() {
+        List<PlayerEnt> listAdmin = playerServ.findAllAdmins();
+        return ResponseEntity.ok(listAdmin);
     }
 
 }
