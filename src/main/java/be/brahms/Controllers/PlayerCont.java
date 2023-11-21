@@ -1,5 +1,6 @@
 package be.brahms.Controllers;
 
+import be.brahms.models.dtos.PlayerDTO;
 import be.brahms.models.entities.PlayerEnt;
 import be.brahms.models.forms.PlayerF;
 import be.brahms.services.PlayerServ;
@@ -22,4 +23,12 @@ public class PlayerCont {
         PlayerEnt createPlayer = playerServ.create(form.toEntity());
         return ResponseEntity.ok(createPlayer);
     }
+
+    @GetMapping("/player/{id}")
+    public ResponseEntity<PlayerDTO> findPlayerById (@PathVariable Long id) {
+        PlayerEnt playerId = playerServ.findById(id);
+        PlayerDTO playerDTO = PlayerDTO.fromEntity(playerId);
+        return ResponseEntity.ok(playerDTO);
+    }
+
 }
