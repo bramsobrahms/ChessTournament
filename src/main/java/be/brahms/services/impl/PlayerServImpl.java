@@ -9,6 +9,8 @@ import be.brahms.utils.BCryptUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PlayerServImpl implements PlayerServ {
 
@@ -52,5 +54,9 @@ public class PlayerServImpl implements PlayerServ {
         return playerRepo.findById(id).orElseThrow(NotFoundPlayerException::new);
     }
 
+    @Override
+    public List<PlayerEnt> findAll() {
+        return playerRepo.findAll();
+    }
 
 }

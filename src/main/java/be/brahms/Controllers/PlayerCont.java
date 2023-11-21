@@ -8,6 +8,8 @@ import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping
 public class PlayerCont {
@@ -29,6 +31,12 @@ public class PlayerCont {
         PlayerEnt playerId = playerServ.findById(id);
         PlayerDTO playerDTO = PlayerDTO.fromEntity(playerId);
         return ResponseEntity.ok(playerDTO);
+    }
+
+    @GetMapping("/players")
+    public ResponseEntity<List<PlayerEnt>> findAllPlayers () {
+        List<PlayerEnt> listPlayers = playerServ.findAll();
+        return ResponseEntity.ok(listPlayers);
     }
 
 }
