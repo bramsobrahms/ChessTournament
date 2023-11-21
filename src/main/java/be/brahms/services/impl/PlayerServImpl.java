@@ -55,8 +55,8 @@ public class PlayerServImpl implements PlayerServ {
     }
 
     @Override
-    public List<PlayerEnt> findAll() {
-        return playerRepo.findAll();
+    public List<PlayerEnt> findAllPlayers() {
+        return playerRepo.findAllPlayers();
     }
 
 

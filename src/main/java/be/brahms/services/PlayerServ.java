@@ -8,7 +8,7 @@ public interface PlayerServ {
 
     PlayerEnt create(PlayerEnt player);
     PlayerEnt findById(Long id);
-    List<PlayerEnt> findAll();
+    List<PlayerEnt> findAllPlayers();
 
     List<PlayerEnt> findAllAdmins();
 

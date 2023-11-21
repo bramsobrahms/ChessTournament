@@ -10,6 +10,9 @@ import java.util.List;
 @Repository
 public interface PlayerRepo extends JpaRepository<PlayerEnt, Long> {
 
+    @Query("SELECT p FROM PlayerEnt p WHERE p.role = 'PLAYER'")
+    List <PlayerEnt> findAllPlayers();
+
     @Query("SELECT p FROM PlayerEnt p WHERE p.role = 'ADMIN'")
     List <PlayerEnt> findAllAdmins();
 }

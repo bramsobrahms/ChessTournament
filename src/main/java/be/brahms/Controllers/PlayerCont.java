@@ -37,7 +37,7 @@ public class PlayerCont {
 
     @GetMapping("/players")
     public ResponseEntity<List<PlayerEnt>> findAllPlayers() {
-        List<PlayerEnt> listPlayers = playerServ.findAll();
+        List<PlayerEnt> listPlayers = playerServ.findAllPlayers();
         return ResponseEntity.ok(listPlayers);
     }
 
