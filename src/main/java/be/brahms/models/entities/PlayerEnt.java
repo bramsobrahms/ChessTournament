@@ -48,8 +48,9 @@ public class PlayerEnt {
     private List<PlayerTournamentEnt> playerBlack;
 
 
-    public PlayerEnt(String email, LocalDate birthdate, int elo, String role, Gender gender) {
+    public PlayerEnt(String email, String pseudo, LocalDate birthdate, int elo, String role, Gender gender) {
         this.email = email;
+        this.pseudo = pseudo;
         this.birthdate = birthdate;
         this.elo = elo;
         this.role = role;
