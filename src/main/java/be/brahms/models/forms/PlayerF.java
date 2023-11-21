@@ -18,13 +18,13 @@ public class PlayerF {
     private String email;
     @NotBlank
     private String pseudo;
-    @NotBlank
+
     private LocalDate birthdate;
     @Min(0) @Max(3000)
     private int elo;
     @NotBlank
     private String role;
-    @NotBlank
+
     private Gender gender;
 
     public PlayerEnt toEntity(){

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping
+@RequestMapping("/player")
 public class PlayerCont {
 
     @Autowired
@@ -22,20 +22,20 @@ public class PlayerCont {
         this.playerServ = playerServ;
     }
 
-    @PostMapping("/player")
+    @PostMapping("/register")
     public ResponseEntity<PlayerEnt> create (@RequestBody @Valid PlayerF form) {
         PlayerEnt createPlayer = playerServ.create(form.toEntity());
         return ResponseEntity.ok(createPlayer);
     }
 
-    @GetMapping("/player/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<PlayerDTO> findPlayerById (@PathVariable Long id) {
         PlayerEnt playerId = playerServ.findById(id);
         PlayerDTO playerDTO = PlayerDTO.fromEntity(playerId);
         return ResponseEntity.ok(playerDTO);
     }
 
-    @GetMapping("/players")
+    @GetMapping("")
     public ResponseEntity<List<PlayerEnt>> findAllPlayers() {
         List<PlayerEnt> listPlayers = playerServ.findAllPlayers();
         return ResponseEntity.ok(listPlayers);
