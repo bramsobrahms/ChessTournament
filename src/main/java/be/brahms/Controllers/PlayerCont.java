@@ -3,6 +3,7 @@ package be.brahms.Controllers;
 import be.brahms.models.dtos.PlayerDTO;
 import be.brahms.models.entities.PlayerEnt;
 import be.brahms.models.forms.PlayerF;
+import be.brahms.services.EmailServ;
 import be.brahms.services.PlayerServ;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,14 +18,19 @@ public class PlayerCont {
 
     @Autowired
     private final PlayerServ playerServ;
+    @Autowired
+    private final EmailServ emailServ;
 
-    public PlayerCont(PlayerServ playerServ) {
+    public PlayerCont(PlayerServ playerServ, EmailServ emailServ) {
         this.playerServ = playerServ;
+        this.emailServ = emailServ;
     }
 
     @PostMapping("/register")
     public ResponseEntity<PlayerEnt> create (@RequestBody @Valid PlayerF form) {
         PlayerEnt createPlayer = playerServ.create(form.toEntity());
+        emailServ.sendingEmail("brahmsisme@gmail.com", "Test", "hello,\n Voici votre identifiant: "+createPlayer.getPseudo()+" \n Votre mot de passe: "+createPlayer.getPassword()+" .");
+
         return ResponseEntity.ok(createPlayer);
     }
 
