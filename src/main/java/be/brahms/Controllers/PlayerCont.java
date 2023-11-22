@@ -42,13 +42,13 @@ public class PlayerCont {
     }
 
     @GetMapping("")
-    public ResponseEntity<List<PlayerEnt>> findAllPlayers() {
+    public ResponseEntity<List<PlayerEnt>> listAllPlayers() {
         List<PlayerEnt> listPlayers = playerServ.findAllPlayers();
         return ResponseEntity.ok(listPlayers);
     }
 
     @GetMapping("/listAdmin")
-    public ResponseEntity<List<PlayerEnt>> findAllAdmins() {
+    public ResponseEntity<List<PlayerEnt>> listAllAdmins() {
         List<PlayerEnt> listAdmin = playerServ.findAllAdmins();
         return ResponseEntity.ok(listAdmin);
     }
