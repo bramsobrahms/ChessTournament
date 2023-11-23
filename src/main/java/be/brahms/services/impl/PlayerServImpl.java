@@ -59,9 +59,26 @@ public class PlayerServImpl implements PlayerServ {
         return playerRepo.findAllPlayers();
     }
 
-
+    @Override
     public List<PlayerEnt> findAllAdmins() {
         return playerRepo.findAllAdmins();
+    }
+
+    @Override
+    public PlayerEnt update(Long id, PlayerEnt player) {
+        PlayerEnt playerUptdById = playerRepo.findById(id).orElseThrow(NotFoundPlayerException::new);
+        playerUptdById.setEmail(player.getEmail());
+        playerUptdById.setPseudo(player.getPseudo());
+        playerUptdById.setBirthdate(player.getBirthdate());
+        playerUptdById.setGender(player.getGender());
+
+        return playerRepo.save(playerUptdById);
+    }
+
+    @Override
+    public void delete(Long id){
+        PlayerEnt playerDelete = playerRepo.findById(id).orElseThrow(NotFoundPlayerException::new);
+        playerRepo.delete(playerDelete);
     }
 
 }

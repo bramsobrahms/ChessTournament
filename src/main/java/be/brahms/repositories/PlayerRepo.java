@@ -15,4 +15,5 @@ public interface PlayerRepo extends JpaRepository<PlayerEnt, Long> {
 
     @Query("SELECT p FROM PlayerEnt p WHERE p.role = 'ADMIN'")
     List <PlayerEnt> findAllAdmins();
+
 }

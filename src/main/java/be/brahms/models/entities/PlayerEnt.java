@@ -37,7 +37,7 @@ public class PlayerEnt {
     @Column(nullable = false)
     private String role;
 
-    @Column(nullable = false, columnDefinition = "VARCHAR")
+    //@Column(nullable = false, columnDefinition = "VARCHAR")
     @Enumerated(EnumType.STRING)
     private Gender gender;
 

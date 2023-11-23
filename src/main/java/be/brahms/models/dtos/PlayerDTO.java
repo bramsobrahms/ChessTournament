@@ -13,6 +13,7 @@ public record PlayerDTO(
         LocalDate birthdate,
         int elo,
         Gender gender
+
 ) {
     public static PlayerDTO fromEntity(PlayerEnt player){
         return new PlayerDTO(player.getId(), player.getPseudo(), player.getEmail(), player.getBirthdate(), player.getElo(), player.getGender());
