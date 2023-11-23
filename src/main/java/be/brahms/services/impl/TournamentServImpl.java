@@ -2,12 +2,14 @@ package be.brahms.services.impl;
 
 import be.brahms.enums.Status;
 import be.brahms.exceptions.tournament.MoreThanMaxPlayerTournament;
+import be.brahms.exceptions.tournament.NotFoundTournamentException;
 import be.brahms.models.entities.TournamentEnt;
 import be.brahms.repositories.TournamentRepo;
 import be.brahms.services.TournamentServ;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Service
 public class TournamentServImpl implements TournamentServ {
@@ -20,6 +22,7 @@ public class TournamentServImpl implements TournamentServ {
 
     @Override
     public TournamentEnt create(TournamentEnt tournament) {
+
         if( tournament.getMinPlayer()> tournament.getMaxPlayer()){
             throw new MoreThanMaxPlayerTournament("trop de joueur");
         } else{
@@ -35,5 +38,25 @@ public class TournamentServImpl implements TournamentServ {
             return tournamentRepo.save(tournament);
         }
 
+    }
+
+    @Override
+    public TournamentEnt update(Long id, TournamentEnt tournament) {
+        TournamentEnt tournamentUpdate = tournamentRepo.findById(id).orElseThrow(NotFoundTournamentException::new);
+        tournamentUpdate.setName(tournament.getName());
+        tournamentUpdate.setPlace(tournament.getPlace());
+
+        return tournamentRepo.save(tournamentUpdate);
+    }
+
+    @Override
+    public void delete(Long id) {
+        TournamentEnt deleteTournament = tournamentRepo.findById(id).orElseThrow(NotFoundTournamentException::new);
+        tournamentRepo.delete(deleteTournament);
+    }
+
+    @Override
+    public List<TournamentEnt> findAllTournamentOnlyWoment() {
+        return null;
     }
 }

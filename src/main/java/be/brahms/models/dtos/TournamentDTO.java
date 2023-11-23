@@ -14,7 +14,7 @@ public record TournamentDTO(
         Category category,
         boolean womenOnly
 ) {
-    public TournamentDTO fromEntity(TournamentEnt tournament){
+    public static TournamentDTO fromEntity(TournamentEnt tournament){
         return new TournamentDTO(tournament.getId(), tournament.getName(), tournament.getPlace(), tournament.getMinPlayer(), tournament.getMaxPlayer(), tournament.getMinElo(), tournament.getMaxElo(), tournament.getCategory(), tournament.isWomenOnly());
     }
 }

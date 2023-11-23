@@ -14,9 +14,9 @@ public class TournamentF {
     @NotNull
     private String name;
     private String place;
-    @NotNull @Min(2)
+    @NotNull @Min(2) @Max(32)
     private int minPlayer;
-    @NotNull @Max(32)
+    @NotNull @Min(2) @Max(32)
     private int maxPlayer;
     @Min(0)
     private int minElo;
