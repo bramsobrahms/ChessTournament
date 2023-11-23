@@ -27,7 +27,6 @@ public class TournamentServImpl implements TournamentServ {
         tournament.setEndDateAt(currentDate.plusDays(minimumPlayer));
         tournament.setStatus(currentStatus);
 
-
         return tournamentRepo.save(tournament);
     }
 }
