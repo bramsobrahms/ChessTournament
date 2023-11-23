@@ -20,7 +20,7 @@ public class TournamentF {
     private int maxPlayer;
     @Min(0)
     private int minElo;
-    @Max(300)
+    @Max(3000)
     private int maxElo;
     private Category Category;
     private boolean womenOnly;
