@@ -29,13 +29,11 @@ public class TournamentEnt {
     @Column(nullable = false)
     private int minPlayer;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private int maxPlayer;
 
-    @Column(nullable = false)
     private int minElo;
 
-    @Column(nullable = false)
     private int maxElo;
 
     @Column(nullable = false)
@@ -70,4 +68,14 @@ public class TournamentEnt {
     @OneToMany(mappedBy = "tournament")
     private List<PlayerTournamentEnt> playerTournaments;
 
+    public TournamentEnt(String name, String place, int minPlayer, int maxPlayer, int minElo, int maxElo, Category category, boolean womenOnly) {
+        this.name = name;
+        this.place = place;
+        this.minPlayer = minPlayer;
+        this.maxPlayer = maxPlayer;
+        this.minElo = minElo;
+        this.maxElo = maxElo;
+        this.category = category;
+        this.womenOnly = womenOnly;
+    }
 }
