@@ -32,6 +32,9 @@ public class AuthCont {
         String token = jwtUtils.generateToken(playerRegister);
         PlayerTokenDTO plyTokDto = PlayerTokenDTO.fromEntity(playerRegister);
         plyTokDto.setToken(token);
+
+        emailServ.sendingEmail("brahmsisme@gmail.com", "Test", "hello,\n Voici votre identifiant: "+playerRegister.getPseudo()+" \n Votre mot de passe: "+playerRegister.getPassword()+" .");
+
         return ResponseEntity.ok(plyTokDto);
     }
 }
