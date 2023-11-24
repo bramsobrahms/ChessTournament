@@ -11,5 +11,6 @@ public interface TournamentServ {
     void delete(Long id);
     List<TournamentEnt> findAllTournament();
     List<TournamentEnt> findAllTournamentOnlyWoment();
+    List<TournamentEnt> searchByData(String searchData);
 
 }

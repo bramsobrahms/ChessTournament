@@ -6,6 +6,7 @@ import be.brahms.models.forms.TournamentF;
 import be.brahms.services.TournamentServ;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -62,4 +63,11 @@ public class TournamentCont {
 
         return ResponseEntity.ok(tournamentsWomen);
     }
+
+    @GetMapping("/search/{searchData}")
+    public ResponseEntity<List<TournamentEnt>> searcheByData(@PathVariable String searchData){
+        List<TournamentEnt> listDataSearch = tournamentServ.searchByData(searchData);
+        return ResponseEntity.ok(listDataSearch);
+    }
+
 }

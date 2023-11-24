@@ -6,6 +6,7 @@ import be.brahms.exceptions.tournament.NotFoundTournamentException;
 import be.brahms.models.entities.TournamentEnt;
 import be.brahms.repositories.TournamentRepo;
 import be.brahms.services.TournamentServ;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -14,6 +15,7 @@ import java.util.List;
 @Service
 public class TournamentServImpl implements TournamentServ {
 
+    @Autowired
     private final TournamentRepo tournamentRepo;
 
     public TournamentServImpl(TournamentRepo tournamentRepo) {
@@ -67,4 +69,10 @@ public class TournamentServImpl implements TournamentServ {
     public List<TournamentEnt> findAllTournament() {
         return tournamentRepo.findAll();
     }
+
+    @Override
+    public List<TournamentEnt> searchByData(String searchData){
+        return tournamentRepo.searchByData(searchData);
+    }
+
 }

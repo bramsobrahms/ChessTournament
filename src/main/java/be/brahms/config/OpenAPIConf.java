@@ -17,9 +17,9 @@ public class OpenAPIConf {
         return new OpenAPI()
                 .addSecurityItem( new SecurityRequirement().addList(securitySchemeName))
                 .components( new Components().addSecuritySchemes( securitySchemeName,
-                            new SecurityScheme().name(securitySchemeName).type(SecurityScheme.Type.HTTP).scheme("bearer").bearerFormat("JWT")
-                            )
+                            new SecurityScheme().name(securitySchemeName).type(SecurityScheme.Type.HTTP).scheme("bearer").bearerFormat("JWT"))
                 );
 
     }
+
 }
