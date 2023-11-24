@@ -14,7 +14,7 @@ public interface TournamentRepo extends JpaRepository<TournamentEnt, Long> {
     @Query("SELECT t FROM TournamentEnt t WHERE t.womenOnly = true")
     List<TournamentEnt> findAllTournamentOnlyWoment();
 
-    @Query("SELECT t FROM TournamentEnt t WHERE t.name = :searchData OR t.place = :searchData ")
+    @Query("SELECT t FROM TournamentEnt t WHERE LOWER(t.name) LIKE LOWER(CONCAT('%', :searchData, '%')) OR LOWER(t.place) LIKE LOWER(CONCAT('%', :searchData, '%')) OR LOWER(t.category) LIKE LOWER(CONCAT('%', :searchData, '%')) OR LOWER(t.status) LIKE LOWER(CONCAT('%', :searchData, '%')) ")
     List<TournamentEnt> searchByData(@Param("searchData") String searchData);
 
 }
