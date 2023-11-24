@@ -23,9 +23,9 @@ public class TournamentServImpl implements TournamentServ {
     @Override
     public TournamentEnt create(TournamentEnt tournament) {
 
-        if( tournament.getMinPlayer()> tournament.getMaxPlayer()){
+        if (tournament.getMinPlayer() > tournament.getMaxPlayer()) {
             throw new MoreThanMaxPlayerTournament("trop de joueur");
-        } else{
+        } else {
             LocalDate currentDate = LocalDate.now();
             Status currentStatus = Status.WAITING;
             int minimumPlayer = tournament.getMinPlayer();
@@ -42,9 +42,12 @@ public class TournamentServImpl implements TournamentServ {
 
     @Override
     public TournamentEnt update(Long id, TournamentEnt tournament) {
+        LocalDate currentDate = LocalDate.now();
+
         TournamentEnt tournamentUpdate = tournamentRepo.findById(id).orElseThrow(NotFoundTournamentException::new);
         tournamentUpdate.setName(tournament.getName());
         tournamentUpdate.setPlace(tournament.getPlace());
+        tournamentUpdate.setUpdateDateAt(currentDate);
 
         return tournamentRepo.save(tournamentUpdate);
     }
@@ -57,6 +60,11 @@ public class TournamentServImpl implements TournamentServ {
 
     @Override
     public List<TournamentEnt> findAllTournamentOnlyWoment() {
-        return null;
+        return tournamentRepo.findAllTournamentOnlyWoment();
+    }
+
+    @Override
+    public List<TournamentEnt> findAllTournament() {
+        return tournamentRepo.findAll();
     }
 }

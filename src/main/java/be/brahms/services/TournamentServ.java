@@ -9,6 +9,7 @@ public interface TournamentServ {
     TournamentEnt create(TournamentEnt tournament);
     TournamentEnt update(Long id, TournamentEnt tournament);
     void delete(Long id);
+    List<TournamentEnt> findAllTournament();
     List<TournamentEnt> findAllTournamentOnlyWoment();
 
 }

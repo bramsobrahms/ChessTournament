@@ -9,6 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @RestController
 @RequestMapping("/tournament")
 public class TournamentCont {
@@ -36,5 +39,27 @@ public class TournamentCont {
     public ResponseEntity<Object> deleteTournament(@PathVariable Long id){
         tournamentServ.delete(id);
         return ResponseEntity.status(200).body("Deletion success");
+    }
+
+    @GetMapping("")
+    public ResponseEntity<List<TournamentEnt>> listTournament() {
+        List<TournamentEnt> tournaments = tournamentServ.findAllTournament()
+                .stream()
+                .sorted((dateNow, dateUpdate) -> dateUpdate.getUpdateDateAt().compareTo(dateNow.getCreateDateAt()))
+                .limit(10)
+                .collect(Collectors.toList());
+
+        return ResponseEntity.ok(tournaments);
+    }
+
+    @GetMapping("/onlywomen")
+    public ResponseEntity<List<TournamentEnt>> listTournamentOnlyWomen() {
+        List<TournamentEnt> tournamentsWomen = tournamentServ.findAllTournamentOnlyWoment()
+                .stream()
+                .sorted((dateNow, dateUpdate) -> dateUpdate.getUpdateDateAt().compareTo(dateNow.getCreateDateAt()))
+                .limit(10)
+                .collect(Collectors.toList());
+
+        return ResponseEntity.ok(tournamentsWomen);
     }
 }
