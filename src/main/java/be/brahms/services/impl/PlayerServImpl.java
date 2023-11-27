@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PlayerServImpl implements PlayerServ {
@@ -80,5 +81,25 @@ public class PlayerServImpl implements PlayerServ {
         PlayerEnt playerDelete = playerRepo.findById(id).orElseThrow(NotFoundPlayerException::new);
         playerRepo.delete(playerDelete);
     }
+
+    @Override
+    public PlayerEnt login(PlayerEnt player) {
+        PlayerEnt playerEmailPseudo = playerRepo.findEmailOrPseudo(player.getEmail(), player.getPseudo()).orElseThrow();
+
+        if(!bCryptUtils.verify(player.getPassword(), playerEmailPseudo.getPassword())) {
+            throw new RuntimeException("Wrong password");
+        }
+
+        return playerEmailPseudo;
+    }
+
+//    @Override
+//    public PlayerEnt login(PlayerEnt player) {
+//        PlayerEnt existingPlayer = playerRepo.findByEmail(player.getEmail()).orElseThrow();
+//        if(!bCryptUtils.verify(player.getPassword(), existingPlayer.getPassword())) {
+//            throw new RuntimeException("Wrong password");
+//        }
+//        return existingPlayer;
+//    }
 
 }

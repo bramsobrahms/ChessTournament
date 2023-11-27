@@ -12,5 +12,6 @@ public interface PlayerServ {
     List<PlayerEnt> findAllAdmins();
     PlayerEnt update(Long id, PlayerEnt player);
     void delete(Long id);
+    PlayerEnt login(PlayerEnt player);
 
 }
