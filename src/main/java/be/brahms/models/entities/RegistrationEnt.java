@@ -29,4 +29,13 @@ public class RegistrationEnt {
     @Column(nullable = false)
     private LocalDate createDateAt;
 
+    private boolean Registred;
+
+    public RegistrationEnt(PlayerEnt player, TournamentEnt tournament) {
+        this.player = player;
+        this.tournament = tournament;
+        this.createDateAt = LocalDate.now();
+        this.Registred = false;
+    }
+
 }

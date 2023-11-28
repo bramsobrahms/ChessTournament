@@ -78,4 +78,5 @@ public class TournamentEnt {
         this.category = category;
         this.womenOnly = womenOnly;
     }
+
 }
