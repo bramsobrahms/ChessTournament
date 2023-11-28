@@ -13,7 +13,7 @@ public class EmailServImpl  implements EmailServ {
     private JavaMailSender emailSender;
 
     @Override
-    public void sendingEmail( String to, String subject, String text) {
+    public void sendingEmail( String subject, String text, String... to) {
 
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom("Chess@Tournament.be");

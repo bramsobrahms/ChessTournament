@@ -34,7 +34,7 @@ public class AuthCont {
         PlayerTokenDTO plyTokDto = PlayerTokenDTO.fromEntity(playerRegister);
         plyTokDto.setToken(token);
 
-        emailServ.sendingEmail("brahmsisme@gmail.com", "Test", "hello,\n Voici votre identifiant: "+playerRegister.getPseudo()+" \n Votre mot de passe: "+playerRegister.getPassword()+" .");
+        emailServ.sendingEmail("Welcome Chess Tournament", "hello,\n Voici votre identifiant: "+playerRegister.getPseudo()+" \n Votre mot de passe: "+playerRegister.getPassword(), "brahmsisme@gmail.com" );
 
         return ResponseEntity.ok(plyTokDto);
     }
