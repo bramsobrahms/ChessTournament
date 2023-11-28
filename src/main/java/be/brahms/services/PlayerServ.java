@@ -1,10 +1,11 @@
 package be.brahms.services;
 
 import be.brahms.models.entities.PlayerEnt;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
 import java.util.List;
 
-public interface PlayerServ {
+public interface PlayerServ extends UserDetailsService {
 
     PlayerEnt create(PlayerEnt player);
     PlayerEnt findById(Long id);

@@ -21,6 +21,9 @@ public interface PlayerRepo extends JpaRepository<PlayerEnt, Long> {
     @Query("SELECT p FROM PlayerEnt p WHERE p.email = :email OR p.pseudo = :pseudo")
     Optional<PlayerEnt> findEmailOrPseudo(@Param("email") String email, @Param("pseudo") String pseudo);
 
+    @Query("select p from PlayerEnt p where p.email ilike :email")
+    Optional<PlayerEnt> findByEmail(String email);
+
 //    Optional<PlayerEnt> findByEmail(String email);
 
 }

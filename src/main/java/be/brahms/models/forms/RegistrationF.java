@@ -4,8 +4,10 @@ import be.brahms.models.entities.PlayerEnt;
 import be.brahms.models.entities.RegistrationEnt;
 import be.brahms.models.entities.TournamentEnt;
 import lombok.Data;
+import lombok.Getter;
 
 @Data
+@Getter
 public class RegistrationF {
 
     private PlayerEnt player;

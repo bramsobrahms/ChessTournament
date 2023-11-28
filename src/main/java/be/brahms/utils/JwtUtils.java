@@ -34,7 +34,9 @@ public class JwtUtils {
      */
     public String generateToken(PlayerEnt player) {
         return builder
+                .claim("id",player.getId())
                 .claim("email", player.getEmail()) // claim => revendication ou réclamations
+                .claim("role",player.getRole())
                 .setIssuedAt(new Date()) // Define actual date
                 .setExpiration(new Date(System.currentTimeMillis() + config.expiretAt * 1000L)) // Expirate Date convert in MiliSecondes
                 .compact(); // Create the String

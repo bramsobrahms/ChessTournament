@@ -1,14 +1,16 @@
 package be.brahms.Controllers;
 
+import be.brahms.models.dtos.RegistrationDTO;
+import be.brahms.models.entities.PlayerEnt;
 import be.brahms.models.entities.RegistrationEnt;
 import be.brahms.models.forms.RegistrationF;
 import be.brahms.services.RegistrationServ;
 import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/registration")
@@ -16,13 +18,19 @@ public class RegistrationCont {
 
     private final RegistrationServ registrationServ;
 
+    @Autowired
     public RegistrationCont(RegistrationServ registrationServ) {
         this.registrationServ = registrationServ;
     }
 
-    @PostMapping
-    public ResponseEntity<RegistrationEnt> registre(@RequestBody @Valid RegistrationF form) {
-        RegistrationEnt newRegistration = registrationServ.registre(form.toEntity());
-        return ResponseEntity.ok(newRegistration);
+    @PreAuthorize("isAuthenticated()")
+    @PostMapping("/{tournamentId}")
+    public ResponseEntity<RegistrationDTO> registre(
+            @PathVariable Long tournamentId,
+            Authentication authentication) {
+        Long userId =((PlayerEnt) authentication.getPrincipal()).getId();
+        RegistrationEnt newRegistration = registrationServ.registre(userId,tournamentId);
+        RegistrationDTO dto = RegistrationDTO.fromEntity(newRegistration);
+        return ResponseEntity.ok(dto);
     }
 }

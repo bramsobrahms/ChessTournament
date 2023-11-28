@@ -7,6 +7,8 @@ import be.brahms.services.PlayerServ;
 import be.brahms.services.security.GeneratePwd;
 import be.brahms.utils.BCryptUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -91,6 +93,11 @@ public class PlayerServImpl implements PlayerServ {
         }
 
         return playerEmailPseudo;
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        return playerRepo.findByEmail(email).orElseThrow();
     }
 
 //    @Override
