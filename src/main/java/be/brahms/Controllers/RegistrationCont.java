@@ -3,9 +3,7 @@ package be.brahms.Controllers;
 import be.brahms.models.dtos.RegistrationDTO;
 import be.brahms.models.entities.PlayerEnt;
 import be.brahms.models.entities.RegistrationEnt;
-import be.brahms.models.forms.RegistrationF;
 import be.brahms.services.RegistrationServ;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -33,4 +31,5 @@ public class RegistrationCont {
         RegistrationDTO dto = RegistrationDTO.fromEntity(newRegistration);
         return ResponseEntity.ok(dto);
     }
+
 }

@@ -1,6 +1,5 @@
 package be.brahms.Controllers.security;
 
-import be.brahms.models.dtos.PlayerDTO;
 import be.brahms.models.dtos.PlayerTokenDTO;
 import be.brahms.models.entities.PlayerEnt;
 import be.brahms.models.forms.PlayerF;

@@ -35,7 +35,7 @@ public class JwtFilter extends OncePerRequestFilter {
             String type = authorizations[0];
             String token = authorizations[1];
 
-            if(type.equals("Bearer") && !token.equals("")) {
+            if(type.equals("Bearer") && !token.isEmpty()) {
                 if( utils.isValid(token) ) {
                     String email = utils.getEmail(token);
                     UserDetails player = userDetailsService.loadUserByUsername(email);
