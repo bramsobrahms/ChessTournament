@@ -9,5 +9,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface RegistrationRepo extends JpaRepository<RegistrationEnt, Long> {
 
+    @Query("SELECT COUNT(r) FROM RegistrationEnt r WHERE r.tournament.id = :tournamentId ")
+    int countOfTournamentById(@Param("tournamentId") Long tournamentId);
+
 
 }
